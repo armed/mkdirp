@@ -1,4 +1,4 @@
 mkdirp
 ======
 
-Make directory hierarchy with one function call
+Make directory hierarchy with one function call.
