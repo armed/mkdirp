@@ -35,7 +35,6 @@ func TestMkdirp(t *testing.T) {
 			So(len(test.branches), ShouldEqual, 2)
 			So(test.branches[0].name, ShouldEqual, "data1")
 			So(test.branches[1].name, ShouldEqual, "data2")
-
 		})
 	})
 }
