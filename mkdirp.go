@@ -54,32 +54,5 @@ func build(data string, tree *dirTree) {
 func mkTree(command string) *dirTree {
 	tree := &dirTree{branches: []*dirTree{}}
 	build(command, tree)
-
-	// result := []string{}
-	// addPath := func(p string) {
-	// 	result = append(result, p)
-	// }
 	return tree.branches[0]
 }
-
-// func travel(tree *dirTree, fn func(string)) {
-// 	if len(tree.branches) == 0 {
-// 		p := []string{}
-// 		elem := tree
-// 		for {
-// 			if elem == nil {
-// 				break
-// 			}
-// 			tmp := make([]string, len(p)+1)
-// 			tmp[0] = elem.name
-// 			copy(tmp, p)
-// 			p = tmp
-// 			elem = elem.parent
-// 		}
-// 		fn(strings.Join(p, ""))
-// 		return
-// 	}
-// 	for _, br := range tree.branches {
-// 		travel(br, fn)
-// 	}
-// }

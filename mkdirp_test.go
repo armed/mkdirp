@@ -38,21 +38,4 @@ func TestMkdirp(t *testing.T) {
 
 		})
 	})
-	// c("mk func should", t, func() {
-	// 	c("return list of paths to create", func() {
-	// 		result := mk("/Users/me/somefolder")
-
-	// 		So(len(result), ShouldEqual, 1)
-	// 		So(result[0], ShouldEqual, "/Users/me/somefolder")
-	// 	})
-	// 	c("support creating of trees", func() {
-	// 		result := mk("tmpdir/{trunk/sources/{includes,docs},branches,tags}")
-	// 		fmt.Println(result)
-	// 		So(len(result), ShouldEqual, 4)
-	// 		So(result[0], ShouldEqual, "tmpdir/trunk/sources/includes")
-	// 		So(result[1], ShouldEqual, "tmpdir/trunk/sources/docs")
-	// 		So(result[2], ShouldEqual, "tmpdir/trunk/branches")
-	// 		So(result[3], ShouldEqual, "tmpdir/trunk/tags")
-	// 	})
-	// })
 }
