@@ -5,6 +5,8 @@ Make directory tree with one function call.
 
 ####Example
 
+    package "main"
+
     import (
       "github.com/armed/mkdirp"
       "log"
