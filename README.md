@@ -1,7 +1,7 @@
 mkdirp
 ======
 
-Make directory hierarchy with one function call.
+Make directory tree with one function call.
 
 ####Example
 
