@@ -10,31 +10,40 @@ var c = Convey
 func TestMkdirp(t *testing.T) {
 	c("mkTree should", t, func() {
 		c("return tree from straight path", func() {
-			root := mkTree("Users/me/somefolder")
+			root := mkTree("/Users/me/somefolder")
 			So(root, ShouldNotBeNil)
-			So(len(root.branches), ShouldEqual, 0)
-			So(root.name, ShouldEqual, "Users/me/somefolder")
+			So(len(root.getChildren()), ShouldEqual, 0)
+			So(root.getName(), ShouldEqual, "/Users/me/somefolder")
 		})
 		c("return tree with subtrees", func() {
-			root := mkTree("Users/me/{somefolder,somefolder2}/test/{data1,data2}")
+			root := mkTree("/Users/me/{somefolder,somefolder2}/test/{data1,data2}")
 
-			So(root.name, ShouldEqual, "Users/me/")
-			subtree := root.branches
+			So(root.getName(), ShouldEqual, "/Users/me/")
+			subtree := root.getChildren()
 			So(len(subtree), ShouldEqual, 2)
-			So(subtree[0].name, ShouldEqual, "somefolder")
-			So(subtree[1].name, ShouldEqual, "somefolder2")
+			So(subtree[0].getName(), ShouldEqual, "somefolder")
+			So(subtree[1].getName(), ShouldEqual, "somefolder2")
 
 			sstree := subtree[0]
 			sstree2 := subtree[1]
-			So(len(sstree.branches), ShouldEqual, 1)
-			So(sstree.branches[0].name, ShouldEqual, "test/")
-			So(len(sstree2.branches), ShouldEqual, 1)
-			So(sstree2.branches[0].name, ShouldEqual, "test/")
+			So(len(sstree.getChildren()), ShouldEqual, 1)
+			So(sstree.getChildren()[0].getName(), ShouldEqual, "test/")
+			So(len(sstree2.getChildren()), ShouldEqual, 1)
+			So(sstree2.getChildren()[0].getName(), ShouldEqual, "test/")
 
-			test := sstree.branches[0]
-			So(len(test.branches), ShouldEqual, 2)
-			So(test.branches[0].name, ShouldEqual, "data1")
-			So(test.branches[1].name, ShouldEqual, "data2")
+			test := sstree.getChildren()[0]
+			So(len(test.getChildren()), ShouldEqual, 2)
+			So(test.getChildren()[0].getName(), ShouldEqual, "data1")
+			So(test.getChildren()[1].getName(), ShouldEqual, "data2")
+
+			c("where root contains slice of all paths", func() {
+				paths := root.getPaths()
+				So(len(paths), ShouldEqual, 4)
+				So(paths[0], ShouldEqual, "/Users/me/somefolder/test/data1")
+				So(paths[1], ShouldEqual, "/Users/me/somefolder/test/data2")
+				So(paths[2], ShouldEqual, "/Users/me/somefolder2/test/data1")
+				So(paths[3], ShouldEqual, "/Users/me/somefolder2/test/data2")
+			})
 		})
 	})
 }
