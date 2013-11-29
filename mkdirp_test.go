@@ -14,6 +14,14 @@ func TestMkdirp(t *testing.T) {
 			So(root, ShouldNotBeNil)
 			So(len(root.getChildren()), ShouldEqual, 0)
 			So(root.getName(), ShouldEqual, "/Users/me/somefolder")
+			So(len(root.getPaths()), ShouldEqual, 1)
+			So(root.getPaths()[0], ShouldEqual, "/Users/me/somefolder")
+		})
+		c("create directory which name contains one charachter", func() {
+			root := mkTree("a")
+			So(root.getName(), ShouldEqual, "a")
+			So(len(root.getPaths()), ShouldEqual, 1)
+			So(root.getPaths()[0], ShouldEqual, "a")
 		})
 		c("return tree with subtrees", func() {
 			root := mkTree("/Users/me/{somefolder,somefolder2}/test/{data1,data2}")

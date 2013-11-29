@@ -74,6 +74,7 @@ func (t *treeRoot) getPaths() (paths []string) {
 func newTree() (tree *treeRoot) {
 	tree = &treeRoot{treeNode{children: []*treeNode{}}, []*treeNode{}}
 	tree.root = tree
+	tree.nodes = append(tree.nodes, &tree.treeNode)
 	return
 }
 
@@ -101,7 +102,7 @@ func (t *treeNode) getChildren() []*treeNode {
 }
 
 func build(command string, tree TreeNode) {
-	if len(command) <= 1 {
+	if len(command) == 0 {
 		return
 	}
 	l := sep.FindStringIndex(command)
