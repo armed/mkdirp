@@ -32,7 +32,7 @@ type treeNode struct {
 
 type TreeRoot interface {
 	TreeNode
-	addNode(note *treeNode)
+	addNode(*treeNode)
 	GetPaths() []string
 }
 
