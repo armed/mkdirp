@@ -33,7 +33,7 @@ type treeNode struct {
 type TreeRoot interface {
 	TreeNode
 	addNode(note *treeNode)
-	getPaths() []string
+	GetPaths() []string
 }
 
 type treeRoot struct {
@@ -54,7 +54,7 @@ func (t *treeRoot) getLeaves() (leaves []*treeNode) {
 	return
 }
 
-func (t *treeRoot) getPaths() (paths []string) {
+func (t *treeRoot) GetPaths() (paths []string) {
 	for _, n := range t.nodes {
 		if len(n.children) == 0 { // node is leaf
 			var p string
@@ -131,14 +131,14 @@ func build(command string, tree TreeNode) {
 	}
 }
 
-func mkTree(command string) TreeRoot {
+func MkTree(command string) TreeRoot {
 	tree := newTree()
 	build(command, tree)
 	return tree
 }
 
 func Mk(command string, perm os.FileMode) (err error) {
-	paths := mkTree(command).getPaths()
+	paths := MkTree(command).GetPaths()
 
 	for _, p := range paths {
 		err = os.MkdirAll(p, perm)
